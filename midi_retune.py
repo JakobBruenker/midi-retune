@@ -24,11 +24,11 @@ Pianoteq setup (once):
 
 Usage
 -----
-    python scl2pianoteq.py --list                 # show MIDI ports
-    python scl2pianoteq.py                         # uses 19edo.scl, auto ports
-    python scl2pianoteq.py mytuning.scl            # any Scala file
-    python scl2pianoteq.py 31edo.scl --anchor 60   # anchor on middle C
-    python scl2pianoteq.py --dump                  # print key->freq table, no MIDI
+    python midi_retune.py --list                  # show MIDI ports
+    python midi_retune.py 19edo.scl --mpe --bend-range 2   # MPE retune (Pianoteq 7, GM)
+    python midi_retune.py 19edo.scl               # MTS retune (Pianoteq 8+)
+    python midi_retune.py 31edo.scl --anchor 60   # anchor on middle C
+    python midi_retune.py --dump                  # print key->freq table, no MIDI
 """
 
 import argparse

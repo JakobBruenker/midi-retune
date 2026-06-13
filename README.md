@@ -23,10 +23,10 @@ MIDI keyboard  →  midi-retune  →  virtual MIDI port  →  your synth
 pip install -r requirements.txt
 
 # see your MIDI ports
-python scl2pianoteq.py --list
+python midi_retune.py --list
 
 # play 19-TET, retuning via MPE pitch bend (range 2 semitones)
-python scl2pianoteq.py 19edo.scl --mpe --bend-range 2
+python midi_retune.py 19edo.scl --mpe --bend-range 2
 ```
 
 The script auto-picks an input port containing "keystation" and an output port containing "loop"/"loopMIDI" (or falls back to the Windows GS Wavetable synth). Override with `--in` / `--out` (index or name substring).
@@ -37,7 +37,7 @@ The script auto-picks an input port containing "keystation" and an output port c
 Each sounding note is sent on its own MIDI channel and bent to its exact pitch. Works with any synth that does per-note / MPE pitch bend (Pianoteq, Surge XT, most modern softsynths). Polyphony is capped at 15 simultaneous notes (one channel each).
 
 ```bash
-python scl2pianoteq.py 31edo.scl --mpe --bend-range 2
+python midi_retune.py 31edo.scl --mpe --bend-range 2
 ```
 
 **`--bend-range` must match your synth's pitch-bend range.** If notes barely retune (adjacent microtones collapse to the same pitch), the range is set too high; if intervals are wildly exaggerated, it's too low. Common values: `2` (default GM / many synths), `48` (MPE spec default).
@@ -46,8 +46,8 @@ python scl2pianoteq.py 31edo.scl --mpe --bend-range 2
 Sends one MIDI Tuning Standard table that retunes all 128 keys, then passes notes straight through. Unlimited polyphony, native sustain, no channel juggling — **if** your synth honours MTS-over-MIDI.
 
 ```bash
-python scl2pianoteq.py 19edo.scl          # send table + pass notes through
-python scl2pianoteq.py 19edo.scl --once   # send table only, then exit
+python midi_retune.py 19edo.scl          # send table + pass notes through
+python midi_retune.py 19edo.scl --once   # send table only, then exit
 ```
 
 ## Pianoteq notes (learned the hard way)
@@ -71,7 +71,9 @@ python scl2pianoteq.py 19edo.scl --once   # send table only, then exit
 
 ## Included scales
 
-`12edo.scl`, `19edo.scl`, `24edo.scl` (quarter-tones), `31edo.scl`, `bohlen-pierce.scl` (13 equal divisions of the 3/1 tritave). Drop in any other `.scl` file — cents and ratio entries are both supported.
+`12edo.scl`, `19edo.scl`, `24edo.scl` (quarter-tones), `31edo.scl`, `pythagorean.scl` (12-tone, pure 3/2 fifths), `bohlen-pierce.scl` (13 equal divisions of the 3/1 tritave). Drop in any other `.scl` file — cents and ratio entries are both supported.
+
+Note: a scale's 1/1 lands on the `--anchor` key (default key 69 = A4). For a C-based Pythagorean centering, add `--anchor 60`.
 
 ## License
 
