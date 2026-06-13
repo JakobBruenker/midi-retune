@@ -71,7 +71,7 @@ python midi_retune.py 19edo.scl --once   # send table only, then exit
 
 ## Included scales
 
-`12edo.scl`, `19edo.scl`, `24edo.scl` (quarter-tones), `31edo.scl`, `pythagorean.scl` (12-tone, pure 3/2 fifths), `bohlen-pierce.scl` (13 equal divisions of the 3/1 tritave). Drop in any other `.scl` file — cents and ratio entries are both supported.
+`12edo.scl`, `19edo.scl`, `24edo.scl` (quarter-tones), `31edo.scl`, `pythagorean.scl` (12-tone, pure 3/2 fifths; sweet thirds on A/E/B), `pythagorean-c.scl` (same but chain shifted so C/F/G have near-just thirds and the wolf fifth sits on D), `bohlen-pierce.scl` (13 equal divisions of the 3/1 tritave). Drop in any other `.scl` file — cents and ratio entries are both supported.
 
 Note: a scale's 1/1 lands on the `--anchor` key (default key 69 = A4). For a C-based Pythagorean centering, add `--anchor 60`.
 
